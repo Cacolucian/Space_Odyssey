@@ -49,7 +49,7 @@ public class PlayerControl : MonoBehaviour
 
     private IEnumerator Shoot()
     {
-        
+        //new feture will be here, branch test
         isShooting = true;
         Instantiate(bullet, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(cooldown);
