@@ -833,9 +833,6 @@ MonoBehaviour:
   highscoreText: {fileID: 0}
   highscore: {fileID: 872800136}
   highscore_2: {fileID: 955803749}
-  highscore_3: {fileID: 0}
-  highscore_4: {fileID: 0}
-  highscore_5: {fileID: 0}
   update: 0
   countGames: {fileID: 1851338006}
   temp: 0
@@ -2134,7 +2131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1424438368
 RectTransform:
   m_ObjectHideFlags: 0

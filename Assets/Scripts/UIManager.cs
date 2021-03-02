@@ -13,10 +13,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI highscoreText;
     public Text highscore;
     public Text highscore_2;
-    public Text highscore_3;
-    public Text highscore_4;
-    public Text highscore_5;
-    private int highsScoreInt;
+    //public Text highscore_3;
+    //public Text highscore_4;
+    //public Text highscore_5;
+    //private int highsScoreInt;
     public bool update;
     public Text countGames;
     private int launchCount;
@@ -119,19 +119,17 @@ public class UIManager : MonoBehaviour
     public static void CountGames()
     {
 
-        // Check For 'TimesLaunched', Set To 0 If Value Isnt Set (First Time Being Launched)
+
         instance.launchCount = PlayerPrefs.GetInt("TimesLaunched", 0);
 
-        // After Grabbing 'TimesLaunched' we increment the value by 1
+
         instance.launchCount = instance.launchCount + 1;
 
-        // Set 'TimesLaunched' To The Incremented Value
+
         PlayerPrefs.SetInt("TimesLaunched", instance.launchCount);
         instance.countGames.text = instance.launchCount.ToString();
 
-        // Now I Would Destroy The Script Or Whatever You
-        // Want To Do To Prevent It From Running Multiple
-        // Times In One Launch Session
+
 
     }
 
