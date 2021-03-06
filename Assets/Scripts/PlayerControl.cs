@@ -88,7 +88,7 @@ public class PlayerControl : MonoBehaviour
             cooldown = 1.0f;
             yield return new WaitForSeconds(5);
             count = true;
-            timer = 10;
+            timer = 40;
             cooldown = 2.0f;
             special = false;
 
@@ -127,12 +127,21 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("PLAYE HIT");
             Destroy(collision.gameObject);
+            count = false;
+            special = false;
+            timer = 40;
+            timerText.text = "READY";
+
         }
         if (collision.gameObject.CompareTag("Alien"))
         {
 
             UIManager.UpdateScore(scoreValue - 1);
             MenuManage.OpenGameOver();
+            count = false;
+            special = false;
+            timer = 40;
+            timerText.text = "READY";
 
         }
 
