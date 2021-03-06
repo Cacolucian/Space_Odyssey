@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 
 public class PlayerControl : MonoBehaviour
 {
-    private const float right_border = 1.1f;
-    private const float left_border = -1.1f;
+    private const float right_border = 1.05f;
+    private const float left_border = -1.05f;
     public float turnSpeed = 1.0f;
     public float horizontalInput;
     public GameObject bullet;
     public GameObject bulletCopy;
-    private float cooldown = 1f; //ship shoot speed
-
+    private float cooldown = 2.0f; //ship shoot speed
+    public bool special = false;
     private bool isShooting;
     private bool moveLeft;
     private bool moveRight;
     public int scoreValue;
+    public float timer;
+    public bool count;
+
+    public TextMeshProUGUI timerText;
 
 
     // Start is called before the first frame update
@@ -45,15 +51,58 @@ public class PlayerControl : MonoBehaviour
             transform.Translate(Vector2.left * Time.deltaTime * turnSpeed);
         if (moveRight && transform.position.x < right_border)
             transform.Translate(Vector2.right * Time.deltaTime * turnSpeed);
+        if (count == true)
+        {
+            
+            timer = timer - Time.deltaTime;
+            timerText.text = timer.ToString("0");
+            Debug.Log("count" + count);
+
+            if (timer <= 0)
+            {
+                timerText.text = "READY";
+                count = false;
+                Debug.Log("count" + count);
+
+            }
+
+        }
+
+        
+    }
+
+    public void SpecialButtonDown()
+    {
+
+        StartCoroutine(Special());
+
+    }
+
+    
+    IEnumerator Special()
+    {
+        if (special == false && count == false)
+        {
+            special = true;
+            Debug.Log("special");
+            cooldown = 1.0f;
+            yield return new WaitForSeconds(5);
+            count = true;
+            timer = 10;
+            cooldown = 2.0f;
+            special = false;
+
+        }
     }
 
     private IEnumerator Shoot()
     {
-        //new feture will be here, branch test
+
         isShooting = true;
         Instantiate(bullet, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(cooldown);
         isShooting = false;
+
     }
 
     public void LeftButtonDown()
